@@ -6,3 +6,11 @@ The demanded tasks were:
 * `Keeping the robot away from the walls`: it must avoid touching the golden boxes, which delimit the perimeter of the circuit;
 * `The management of silver boxes`: when the robot is close to a silver box, it should grab it and move it behind itself.
 
+## Environmental elements
+For a visible recognization of the robot in the simulator it's used an holonomic robot icon: 
+![alt text](https://github.com/CarmineD8/python_simulator/blob/assignment/robot-sim/sr/robot.png)
+Silver tokens are the ones that should be grabbed for the aim of the project:
+![alt text](https://github.com/CarmineD8/python_simulator/blob/assignment/robot-sim/sr/token.png)
+Golden tokens are those that should be avoided and they are represented below:
+![alt text](https://github.com/CarmineD8/python_simulator/blob/assignment/robot-sim/sr/token_silver.png)
+
