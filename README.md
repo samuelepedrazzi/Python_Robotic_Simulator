@@ -8,9 +8,14 @@ The demanded tasks were:
 
 ## Environmental elements
 For a visible recognization of the robot in the simulator it's used an holonomic robot icon: 
+
 ![alt text](https://github.com/CarmineD8/python_simulator/blob/assignment/robot-sim/sr/robot.png)
+
 Silver tokens are the ones that should be grabbed for the aim of the project:
+
 ![alt text](https://github.com/CarmineD8/python_simulator/blob/assignment/robot-sim/sr/token.png)
+
 Golden tokens are those that should be avoided and they are represented below:
+
 ![alt text](https://github.com/CarmineD8/python_simulator/blob/assignment/robot-sim/sr/token_silver.png)
 
