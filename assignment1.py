@@ -167,7 +167,7 @@ def grab_silver_token(dist, rot_y):
         # if the robot can't grab it, it has to move nearer to it
         else:
             print("I'm not close enough.")
-
+            drive(10, 0.5)
     # if the robot is well aligned with the token, we go forward in order to reach it
     elif -a_th<= rot_y <= a_th: 
         print("Ah, that'll do.")
