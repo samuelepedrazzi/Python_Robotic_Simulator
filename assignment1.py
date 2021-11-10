@@ -201,7 +201,6 @@ def main():
          # go on the path
         if dist < g_th and -15<rot_y<15:
             print("There's a wall in front of me, I have to turn...")
-            print(turn_decision())
             if turn_decision() == 1: 
                 turn(17,2)
                 drive(50,1)
