@@ -62,7 +62,10 @@ def find_silver_token():
     """
     dist=1.5
     for token in R.see():
+
+        # research for a silver token in a range of 60 degrees in front of the robot
         if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -30<token.rot_y<30:
+            # check if a silver token is detected behind a golden one, if it is, ignore it, otherwise update the silver token parameters
             if check_golden_between_silver(token.dist, token.rot_y) == False:   
                 dist=token.dist
                 rot_y=token.rot_y
@@ -81,6 +84,8 @@ def find_golden_token():
     """
     dist=100
     for token in R.see():
+
+        # research for a golden token in a range of 60 degrees in front of the robot
         if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -30<token.rot_y<30:
             dist=token.dist
             rot_y=token.rot_y
@@ -91,14 +96,20 @@ def find_golden_token():
 
 def check_golden_between_silver(dist, rot_y):
     """
-    Function to check if there is a golden token between a silver one detected from the robot
+    Function to check if there is a golden token between a silver detected from the robot
 
     Args:
         dist (float): distance of the closest silver token
         rot_y (float): angle between the robot and the token
+
+    Returns:
+        True: if a golden token is detected between the robot and a silver token
+        False: the silver token is closer to the robot than the golden token
     """
     distG=100
     for token in R.see():
+
+        # checks if a golden token in the same angle, in module, is detected with a distance less than a silver detected 
         if token.dist < distG and token.info.marker_type is MARKER_TOKEN_GOLD and abs(token.rot_y) < abs(rot_y): 
             distG = token.dist
    	if distG == 100 or dist < distG: return False
@@ -116,6 +127,8 @@ def turn_decision():
     g_dx = 100
     for token in R.see():
         if token.info.marker_type is MARKER_TOKEN_GOLD:
+            # check the distance between the robot and a golden token on the left and on the right,
+            # in a range of 40 degrees and choose the way with the furthest golden token
             if 70<token.rot_y<110 and token.dist < g_dx:
                 g_dx = token.dist
             elif -110<token.rot_y<-70 and token.dist < g_sx:
@@ -171,9 +184,13 @@ def grab_silver_token(dist, rot_y):
 
 def main():
 
+    # Infinite loop to make the routine go on until the program is closed by the user
     while 1:
-         # collision avoidance
+        # Collision avoidance: if the robot detect a golden token approaching to its right it deviates
+        # to its left, otherwise the robot decide to deviate to its right.
         dist, rot_y = find_golden_token()
+
+        # the global variable g_border_th is used as a thrashold to checks the distance of lateral walls
         if dist < g_border_th:
             if 0<rot_y<150:
                 print("I'm close to the wall, left a bit...")
