@@ -198,21 +198,27 @@ def main():
             elif -150<rot_y<0:
                 print("I'm close to the wall, right a bit...")
                 turn(10,0.5)
-         # go on the path
+        
+        #  when the robot detects, in a range of 30 degrees in front of it, the presence of a wall,
+        # it turns, the decision on where is based on the the distance from golden tokens on its left and right.
         if dist < g_th and -15<rot_y<15:
             print("There's a wall in front of me, I have to turn...")
             if turn_decision() == 1: 
                 turn(17,2)
-                drive(50,1)
+                drive(40,1)
             else: 
                 turn(-17,2)
-                drive(50,1)
+                drive(40,1)
+
+        # if the way of the robot is clear and it is moving forward in the circuit, let's start the research of a silver token:
         else: 
             dist, rot_y = find_silver_token()
+
+            # if the robot detects a silver token, it manages to reach it and grab it, otherwise it continues the path
             if dist != -1:
                 grab_silver_token(dist, rot_y)
             else:
-                drive(80,0.1)
+                drive(70,0.1)
             
 
 main()
