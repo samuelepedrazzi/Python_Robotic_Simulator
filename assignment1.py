@@ -11,10 +11,10 @@ a_th = 2.0
 d_th = 0.4
 """ float: Threshold for the control of the orientation"""
 
-g_th = 1
+g_th = 1.1
 """float: Threshold for golden markers"""
 
-g_border_th = 0.8
+g_border_th = 0.9
 """ float: Threshold for the control of the borders (golden markers)"""
 
 vTurning = 36
