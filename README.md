@@ -1,6 +1,6 @@
 # Assignment #1 for Research Track 1
 ## Python Robotics Simulator
-## Introduction
+## Introduction and aim of the project
 The main target for the requested commission was to manage the movement and other actions of a robot into a simulation software environment.
 The demanded tasks were:
 * `The movement of the robot`: it should drive in the counter-clockwise direction around a circuit, which depends on the "Arena" that was already given; 
@@ -77,8 +77,34 @@ The `R.grab` function returns `True` if a token was successfully picked up, or `
 
 To drop the token, call the `R.release` method.
 
-In order to use this capacity of the robot, there is an implemented function which deals with the grabbing management. Here follows the code:
+In order to use this capacity of the robot, an implemented function deals with the grabbing management: `grab_silver_token(dist, rot_y)`.
 
+Formerly it checks if the robot is at a distance where it can pick up the token (0.4), then verifies if the method R.grab returns, so that it has grabbed the token and it manages to turn around and release the token, otherwise the robot approaches to it.
+
+```python
+if R.grab(): 
+           print("Gotcha!")
+           turn(vTurning, 2)
+           R.release()
+           drive(-20,1)
+           turn(-vTurning, 2)
+else:
+           print("I'm not close enough.")
+           drive(10,0.5)
+```
+
+  if the robot is well aligned with the token, we go forward in order to reach it
+    elif -a_th<= rot_y <= a_th: 
+        print("Ah, that'll do.")
+        drive(50, 0.1)
+
+    # if the robot is not well aligned with the token, it manage to adjust the trajectory
+    elif rot_y < -a_th: 
+        print("Left a bit...")
+        turn(-2, 0.5)
+    elif rot_y > a_th:
+        print("Right a bit...")
+        turn(+2, 0.5)
 ### Vision ###
 
 To help the robot find tokens and navigate, each token has markers stuck to it, as does each wall. The `R.see` method returns a list of all the markers the robot can see, as `Marker` objects. The robot can only see markers which it is facing towards.
@@ -91,12 +117,3 @@ Each `Marker` object has many attributes, included:
 * `dist`: the distance from the centre of the robot to the object (in metres).
 * `rot_y`: rotation about the Y axis in degrees.
 
-For example, the following code fitlter only the golden markers the robot can see:
-
-```python
-for token in R.see():
-        if token.info.marker_type is MARKER_TOKEN_GOLD:
-            ...
-            ...
-            ...
-```
