@@ -47,3 +47,56 @@ In order to run the assignment in the simulator, simply use `run.py`, passing it
 $ python run.py assignment1.py
 ```
 
+Robot API
+---------
+
+The API for controlling a simulated robot is designed to be as similar as possible to the [SR API][sr-api].
+
+### Motors ###
+
+The simulated robot has two motors configured for skid steering, connected to a two-output [Motor Board](https://studentrobotics.org/docs/kit/motor_board). The left motor is connected to output `0` and the right motor to output `1`.
+
+The Motor Board API is identical to [that of the SR API](https://studentrobotics.org/docs/programming/sr/motors/), except that motor boards cannot be addressed by serial number. So, to turn on the motors, one might write the following:
+
+```python
+R.motors[0].m0.power = 25
+R.motors[0].m1.power = -25
+```
+
+The previous code is used to implement the function to make the holonomic robot turn, `turn(speed, seconds)`; contrariwise both the motors are set to a certain `speed` to make the robot drive in a straight direction.
+
+### The Grabber ###
+
+The robot is equipped with a grabber, capable of picking up a token which is in front of the robot and within 0.4 metres of the robot's centre. To pick up a token, call the `R.grab` method:
+
+```python
+success = R.grab()
+```
+
+The `R.grab` function returns `True` if a token was successfully picked up, or `False` otherwise. If the robot is already holding a token, it will throw an `AlreadyHoldingSomethingException`.
+
+To drop the token, call the `R.release` method.
+
+In order to use this capacity of the robot, there is an implemented function which deals with the grabbing management. Here follows the code:
+
+### Vision ###
+
+To help the robot find tokens and navigate, each token has markers stuck to it, as does each wall. The `R.see` method returns a list of all the markers the robot can see, as `Marker` objects. The robot can only see markers which it is facing towards.
+
+Each `Marker` object has many attributes, included:
+
+* `info`: a `MarkerInfo` object describing the marker itself. The program uses:
+  * `code`: the numeric code of the marker.
+  * `marker_type`: the type of object the marker is attached to (either `MARKER_TOKEN_GOLD`, `MARKER_TOKEN_SILVER` or `MARKER_ARENA`).
+* `dist`: the distance from the centre of the robot to the object (in metres).
+* `rot_y`: rotation about the Y axis in degrees.
+
+For example, the following code fitlter only the golden markers the robot can see:
+
+```python
+for token in R.see():
+        if token.info.marker_type is MARKER_TOKEN_GOLD:
+            ...
+            ...
+            ...
+```
