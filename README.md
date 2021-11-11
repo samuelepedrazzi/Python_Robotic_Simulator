@@ -208,13 +208,9 @@ I found a lot of interest in the designated project even though I have encounter
 
 * There are so many different ways to approach to the dedicate assignment and it is not easy to choose first which will be the most efficient.
 * The choice of velocity in respect of the motors is not taken for granted because the run of the code isn't deterministic so every time the robot can do something different.
-* Avoiding considering the silver tokens which would make the robot collide with the wall while trying to grab them; this problem was solved by setting the threshold to look for silver tokens at 1.5 and by creating the function `golden_obstacle(dist, rot_y)`, descripted [above](#vision).
 
-Also, I've worked very little with GitHub in the previous years, so doing this assignment helped increasing my dexterity with this platform, which is very essential for an engineer.
+
 
 ### Possible improvements ###
 
-Given that the threshold to look for silver tokens is pretty low (set at 1.5), a possible improvement could be adding a control in the function `grab_silver_token()`, instead of controlling the golden tokens between the robot and the silver token inside the function `find_silver_token()`, so that when the robot finds a silver token, it approaches the token while countinuously checking the distance from the wall. I personally tried implementing this using the function `check_distance()` inside the grab routine: it worked for about three laps around the arena, then a golden token was hit, so the algorithm should have been upgraded and the bugs fixed. I chose, instead, to keep the function `golden_obstacle(dist, rot_y)` because the robot did not hit once the walls in ten laps around the arena (then I stopped the execution of the program via keyboard interrupt, as I was pretty sure that what I chose to do was correct), so the rules of the assignment were respected.
-
-Also, my implementation of the assignment is fairly simple: for example, the turns to not hit the walls are as easy as they could be implemented, so another possible improvement could be making the robot turn more swiftly.
 
