@@ -20,9 +20,6 @@ g_border_th = 0.9
 vTurning = 36
 """int: Velocity for turning the robot during the grab movement"""
 
-silver = True
-""" boolean: variable for letting the robot know if it has to look for a silver marker"""
-
 R = Robot()
 """ instance of the class Robot"""
 
