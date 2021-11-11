@@ -170,9 +170,48 @@ The same happened to golden tokens, so that the robot can pinpoint exactly where
 
 ### Movement around the arena ###
 
-The aim of the robot, as already said, is to move around the circuit clockwise, grabbing silver tokens if there are some along the path.
+The aim of the robot, as already said, is to move around the circuit clockwise, grabbing silver tokens if there are any along the path.
 In this paragraph let's analize only the part regard to the movement.
-The two main problems to make the robot move safely are to face up to the collision avoidance from golden tokens, which represent the wall or the perimeter of the circuit, 
+The two main problems to make the robot move safely are to face up to the collision avoidance from lateral golden tokens, which represent the wall or the perimeter of the circuit, and to make it turn properly in correspondence of a wall in front of it, specifically deciding where to go in order to continue the path in the same orientation (clockwise).
+
+When the robot is approaching to a wall but not clearly in front of it, so that golden tokens of the side can be considered lateral, in an angle up to 150° and -150°, the main() function manage to adjust the trajectory :
+
+```python
+if dist < g_border_th:
+            if 0<rot_y<150:
+                print("I'm close to the wall, left a bit...")
+                turn(-10,0.5)
+            elif -150<rot_y<0:
+                print("I'm close to the wall, right a bit...")
+                turn(10,0.5) 
+```
+
+The global variable g_border_th is set to 0.9 and it's compared with the real time distance of the robot, if the check passes it means that a golden token is near to the robot.
+
+To solve the problem of choosing the right way to turn in proximity of an angle of the arena or a wall directly posed in front of the robot, comes to our aid the function turn_decision(), which determines what is the best way to go to continue the path, depending on the distance on the left and on the right of the robot. It returns -1 if the distance of the golden token in a range of 40 degrees on his left is less than the distance on its right, otherwise it chooses the other way around, as can be seen below:
+
+```python
+def turn_decision():
+    
+    g_sx = 100
+    g_dx = 100
+    for token in R.see():
+        if token.info.marker_type is MARKER_TOKEN_GOLD:
+            
+            if 70<token.rot_y<110 and token.dist < g_dx:
+                g_dx = token.dist
+            elif -110<token.rot_y<-70 and token.dist < g_sx:
+                g_sx = token.dist
+    if (g_sx == g_dx):
+        return -1
+    else:
+        if g_sx < g_dx:
+            return 1 
+        else: return -1 
+```
+
+
+
 
 
 
