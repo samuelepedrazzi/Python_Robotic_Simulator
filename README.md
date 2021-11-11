@@ -151,22 +151,7 @@ def find_silver_token():
 After the initialization of a variable dist which has to be compared with the actual distance of the robot from a silver token, if the distance is under a certain threshold (it has put to 1.5 after some attempts) the token of the marker_type silver is relevated.
 It's used another function in the one above, (check_golden_token(token.dist, token.rot_y)) which will be described later.
 
-```python
-def find_golden_token():
-
-    dist=100
-    for token in R.see():
-        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -30<token.rot_y<30:
-            dist=token.dist
-            rot_y=token.rot_y
-    if dist==100:
-	    return -1, -1
-    else:
-   	    return dist, rot_y
-```
-
 The same happened to golden tokens, so that the robot can pinpoint exactly where they are. Thanks to some checks in the "main()" function, the robot is able to keep itself away from the walls and not collide with them.
-
 
 ### Movement around the arena ###
 
@@ -174,21 +159,11 @@ The aim of the robot, as already said, is to move around the circuit clockwise, 
 In this paragraph let's analize only the part regard to the movement.
 The two main problems to make the robot move safely are to face up to the collision avoidance from lateral golden tokens, which represent the wall or the perimeter of the circuit, and to make it turn properly in correspondence of a wall in front of it, specifically deciding where to go in order to continue the path in the same orientation (clockwise).
 
-When the robot is approaching to a wall but not clearly in front of it, so that golden tokens of the side can be considered lateral, in an angle up to 150° and -150°, the main() function manage to adjust the trajectory :
-
-```python
-if dist < g_border_th:
-            if 0<rot_y<150:
-                print("I'm close to the wall, left a bit...")
-                turn(-10,0.5)
-            elif -150<rot_y<0:
-                print("I'm close to the wall, right a bit...")
-                turn(10,0.5) 
-```
+When the robot is approaching to a wall but not clearly in front of it, so that golden tokens of the side can be considered lateral, in an angle up to 150° and -150°, the main() function manage to adjust the trajectory.
 
 The global variable g_border_th is set to 0.9 and it's compared with the real time distance of the robot, if the check passes it means that a golden token is near to the robot.
 
-To solve the problem of choosing the right way to turn in proximity of an angle of the arena or a wall directly posed in front of the robot, comes to our aid the function turn_decision(), which determines what is the best way to go to continue the path, depending on the distance on the left and on the right of the robot. It returns "-1" if the distance of the golden token in a range of 40 degrees on his right is less than the distance on its left, otherwise it chooses the other way around and returns "1", as can be seen below:
+To solve the problem of choosing the right way to turn in proximity of an angle of the arena or a wall directly posed in front of the robot, comes to our aid the function `turn_decision()` which determines what is the best way to go to continue the path, depending on the distance on the left and on the right of the robot. It returns "-1" if the distance of the golden token in a range of 40 degrees on his right is less than the distance on its left, otherwise it chooses the other way around and returns "1", as can be seen below:
 
 ```python
 def turn_decision():
@@ -212,17 +187,7 @@ def turn_decision():
 
 At this point, is simply necessary to select the exact velocity to turn 90° left or right based on the return of the function turn_decision():
 
-```python
-if dist < g_th and -15<rot_y<15:
-            print("There's a wall in front of me, I have to turn...")
-            if turn_decision() == 1: 
-                turn(17,2)
-                drive(40,1)
-            else: 
-                turn(-17,2)
-                drive(40,1)
-```
 
 
 
-
+![alt text](https://github.com/samuelepedrazzi/ResearchTrack1/blob/main/images/demoVideo.gif)
