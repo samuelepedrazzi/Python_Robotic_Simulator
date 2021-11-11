@@ -128,12 +128,51 @@ Each `Marker` object has many attributes, such as:
 
 The most used ones for the assignment (in my case) are "marker_type" for the research of tokens and "dist" and "rot_y" to manage the correct movement of the robot and the avoidance of collisions.
 
--------------------------------the detection of silver tokens.
-To solve the first problem is used the "find_golden_token()" function which garantees a vision of 60° of the area in front of the robot, so that it can pinpoint exactly golden tokens. Thanks to some checks in the "main()" function, the robot is able to keep itself away from the walls and not collide with them.
+Important to notice that the robot with the method R.see() has a reliable detection of 360°, so it can be useful to make the robot have a range of vision into a cone of 60 degrees in front of it.
+
+Two function are made to identify silver or golden tokens, here following the code:
+
+```python
+def find_silver_token():
+   
+    dist=1.5
+    for token in R.see():
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_SILVER and -30<token.rot_y<30:
+      
+            if check_golden_between_silver(token.dist, token.rot_y) == False:   
+                dist=token.dist
+                rot_y=token.rot_y
+    if dist==1.5:
+        return -1, -1
+    else:
+        return dist, rot_y
+```
+
+After the initialization of a variable dist which has to be compared with the actual distance of the robot from a silver token, if the distance is under a certain threshold (it has put to 1.5 after some attempts) the token of the marker_type silver is relevated.
+It's used another function in the one above, (check_golden_token(token.dist, token.rot_y)) which will be described later.
+
+```python
+def find_golden_token():
+
+    dist=100
+    for token in R.see():
+        if token.dist < dist and token.info.marker_type is MARKER_TOKEN_GOLD and -30<token.rot_y<30:
+            dist=token.dist
+            rot_y=token.rot_y
+    if dist==100:
+	    return -1, -1
+    else:
+   	    return dist, rot_y
+```
+
+The same happened to golden tokens, so that the robot can pinpoint exactly where they are. Thanks to some checks in the "main()" function, the robot is able to keep itself away from the walls and not collide with them.
 
 
 ### Movement around the arena ###
 
-The aim of the robot, as already said, is to move around the circuit clockwise, grabbing silver tokens if there are some alog the path.
+The aim of the robot, as already said, is to move around the circuit clockwise, grabbing silver tokens if there are some along the path.
 In this paragraph let's analize only the part regard to the movement.
 The two main problems to make the robot move safely are to face up to the collision avoidance from golden tokens, which represent the wall or the perimeter of the circuit, 
+
+
+
