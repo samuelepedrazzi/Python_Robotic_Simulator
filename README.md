@@ -188,7 +188,7 @@ if dist < g_border_th:
 
 The global variable g_border_th is set to 0.9 and it's compared with the real time distance of the robot, if the check passes it means that a golden token is near to the robot.
 
-To solve the problem of choosing the right way to turn in proximity of an angle of the arena or a wall directly posed in front of the robot, comes to our aid the function turn_decision(), which determines what is the best way to go to continue the path, depending on the distance on the left and on the right of the robot. It returns -1 if the distance of the golden token in a range of 40 degrees on his left is less than the distance on its right, otherwise it chooses the other way around, as can be seen below:
+To solve the problem of choosing the right way to turn in proximity of an angle of the arena or a wall directly posed in front of the robot, comes to our aid the function turn_decision(), which determines what is the best way to go to continue the path, depending on the distance on the left and on the right of the robot. It returns "-1" if the distance of the golden token in a range of 40 degrees on his right is less than the distance on its left, otherwise it chooses the other way around and returns "1", as can be seen below:
 
 ```python
 def turn_decision():
@@ -210,7 +210,18 @@ def turn_decision():
         else: return -1 
 ```
 
+At this point, is simply necessary to select the exact velocity to turn 90° left or right based on the return of the function turn_decision():
 
+```python
+if dist < g_th and -15<rot_y<15:
+            print("There's a wall in front of me, I have to turn...")
+            if turn_decision() == 1: 
+                turn(17,2)
+                drive(40,1)
+            else: 
+                turn(-17,2)
+                drive(40,1)
+```
 
 
 
