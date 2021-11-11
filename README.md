@@ -1,4 +1,5 @@
 # Assignment #1 for Research Track 1
+## Python Robotics Simulator
 ## Introduction
 The main target for the requested commission was to manage the movement and other actions of a robot into a simulation software environment.
 The demanded tasks were:
@@ -21,5 +22,24 @@ Golden tokens are those that should be avoided and they are represented below:
 
 The dedicated circuit along which the robot has to move:
 
-![alt text](https://github.com/samuelepedrazzi/Research-Track-1/blob/main/images/arena.png)
+![alt text](https://github.com/samuelepedrazzi/Research-Track-1/blob/main/images/arena.jpeg)
+
+
+Installing
+----------------------
+
+The requirements for the assignment are: a Python 2.7 installation, the [pygame](http://pygame.org/) library, [PyPyBox2D](https://pypi.python.org/pypi/pypybox2d/2.1-r331), and [PyYAML](https://pypi.python.org/pypi/PyYAML/).
+
+Using `pip`, it should be installed the pygame dependence by the command: `pip install hg+https://bitbucket.org/pygame/pygame`, otherwise it can be used the operating system's package manager. 
+
+Once the dependencies are installed, simply run the `test.py` script to test out the simulator.
+
+Running
+-----------------------------
+
+In order to run the assignment in the simulator, simply use `run.py`, passing it the file name, in the specific case, `assignment1.py`, as seen below:
+
+```bash
+$ python run.py assignment1.py
+```
 
