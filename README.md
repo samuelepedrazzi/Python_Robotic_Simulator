@@ -9,7 +9,7 @@ The demanded tasks were:
 ## Environmental elements
 For a visible recognization of the robot in the simulator it's used an holonomic robot icon: 
 
-![alt text](https://github.com/CarmineD8/python_simulator/blob/assignment/robot-sim/sr/robot.png)
+![alt text](https://github.com/samuelepedrazzi/Research-Track-1/blob/images/robot.png)
 
 Silver tokens are the ones that should be grabbed for the aim of the project:
 
