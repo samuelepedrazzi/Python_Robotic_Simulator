@@ -191,4 +191,4 @@ At this point, is simply necessary to select the exact velocity to turn 90° lef
 Simulation video
 -----------------
 
-![alt text](https://github.com/samuelepedrazzi/ResearchTrack1/blob/main/images/SimulationVideo.gif)
+![alt text](https://github.com/samuelepedrazzi/Research-Track-1/blob/main/images/SimulationVideo.gif)
