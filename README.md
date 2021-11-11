@@ -185,7 +185,7 @@ def turn_decision():
         else: return -1 
 ```
 
-At this point, is simply necessary to select the exact velocity to turn 90° left or right based on the return of the function turn_decision():
+At this point, is simply necessary to select the exact velocity to turn 90° left or right based on the return of the function turn_decision().
 
 
 Simulation video
