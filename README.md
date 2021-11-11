@@ -77,7 +77,7 @@ To drop the token, call the `R.release` method.
 
 In order to use this capacity of the robot, an implemented function deals with the grabbing management: `grab_silver_token(dist, rot_y)`.
 
-Formerly it checks if the robot is at a distance where it can pick up the token (the thrashold is set to 0.4), then verifies if the method R.grab returns, so that it has grabbed the token and it manages to turn around and release the token, otherwise the robot approaches to it.
+Formerly it checks if the robot is at a distance where it can pick up the token (the threshold is set to 0.4), then verifies if the method R.grab returns, so that it has grabbed the token and it manages to turn around and release the token, otherwise the robot approaches to it.
 
 ```python
 if R.grab(): 
@@ -149,15 +149,16 @@ def find_silver_token():
 ```
 
 After the initialization of a variable dist which has to be compared with the actual distance of the robot from a silver token, if the distance is under a certain threshold (it has put to 1.5 after some attempts) the token of the marker_type silver is relevated.
-It's used another function in the one above, (check_golden_token(token.dist, token.rot_y)) which will be described later.
+Important to underline the function check_golden_token(token.dist, token.rot_y), which is used in find_silver_token() to avoid this situation: if a silver token is detected but there is also a golden token between the robot and the silver, it should ignore it.
+So check_golden_token(token.dist, token.rot_y) returns a boolean (True) if the measure of distance of the golden token is less than the silver one's. Another constraint for the comparison of the distances is that the allignment of both the tokens of different color must be equal (angle of golden one must be the same of the silver detected).
 
 The same happened to golden tokens, so that the robot can pinpoint exactly where they are. Thanks to some checks in the "main()" function, the robot is able to keep itself away from the walls and not collide with them.
 
 ### Movement around the arena ###
 
-The aim of the robot, as already said, is to move around the circuit clockwise, grabbing silver tokens if there are any along the path.
+The aim of the robot, as already said, is to move around the circuit counter-clockwise, grabbing silver tokens if there are any along the path.
 In this paragraph let's analize only the part regard to the movement.
-The two main problems to make the robot move safely are to face up to the collision avoidance from lateral golden tokens, which represent the wall or the perimeter of the circuit, and to make it turn properly in correspondence of a wall in front of it, specifically deciding where to go in order to continue the path in the same orientation (clockwise).
+The two main problems to make the robot move safely are to face up to the collision avoidance from lateral golden tokens, which represent the wall or the perimeter of the circuit, and to make it turn properly in correspondence of a wall in front of it, specifically deciding where to go in order to continue the path in the same orientation.
 
 When the robot is approaching to a wall but not clearly in front of it, so that golden tokens of the side can be considered lateral, in an angle up to 150° and -150°, the main() function manage to adjust the trajectory.
 
@@ -187,8 +188,39 @@ def turn_decision():
 
 At this point, is simply necessary to select the exact velocity to turn 90° left or right based on the return of the function turn_decision().
 
+Flowchart
+--------------
+
+<p align="center">
+    
+<img src="https://github.com/samuelepedrazzi/Research-Track-1/blob/main/images/Assignment1_Diagram.png" width="600" height="600">
+    
+</p>
+
+As can be seen in the figure the main() function starts an infinite loop through the "while 1" loop, then the function which detects golden tokens is called and returns a distance and an orientation. The control of these parameters of the detected golden token causes that the robot has or not has to avoide a lateral wall if there is one near to it.
+After that there's the check of a frontal wall which determine that the robot is arrived to a twist of the circuit, the if condition added to the turn_decision() function ensures that the robot will continue to the right way where there aren't golden tokens in the identified area.
+Now if there is a silver token detected it manages to reach it, grab it and release it behind, otherwise it goes on the path keeping driving straight. 
 
 Simulation video
 -----------------
 
 ![alt text](https://github.com/samuelepedrazzi/Research-Track-1/blob/main/images/SimulationVideo.gif)
+
+## Conclusions ##
+
+I found a lot of interest in the designated project even though I have encountered some difficulties such as:
+
+* There are so many different ways to approach to the dedicate assignment and it is not easy to choose first which will be the most efficient.
+* The choice of velocity in respect of the motors is not taken for granted because the run of the code isn't deterministic so every time the robot can do little different changes of behaviour.
+
+General thoughts about the work done: the project helps a lot with the use of GitHub, which is essential for an engineer nowadays; Python is a language not so complicated, but I never been there for programming, so it was useful for me to try my hand at this new language, specially for the new "skill" of indentation code.
+
+### Possible improvements ###
+
+Many improvements can be done to the code in order to manage the movement also in different arenas with other shapes and different perimeters.
+
+Maybe it might be useful to do a check of the silver tokens already grabbed, because of if the angle of the curves should be so tight (in proximity of an hairpin), if the token detected is just before the hairpin it could be detected and grabbed again. Hence an identification of the already grabbed tokens could be useful for this reason.
+
+Another improvement can be the management of the movement of turning, while the robot is avoiding a golden token, more swiftly and controlled.
+
+Possibly for a larger work and another kind of approach to the problem could be the a priori decision of which path to choose, scanning the arena before moving and localizing all golden tokens positions in order to not make the robot "bounce" from a wall to another if the movement wasn't so parallel to the walls and to speed up the robot's motion along the circuit.
