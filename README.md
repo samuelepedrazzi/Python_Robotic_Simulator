@@ -149,7 +149,8 @@ def find_silver_token():
 ```
 
 After the initialization of a variable dist which has to be compared with the actual distance of the robot from a silver token, if the distance is under a certain threshold (it has put to 1.5 after some attempts) the token of the marker_type silver is relevated.
-It's used another function in the one above, (check_golden_token(token.dist, token.rot_y)) which will be described later.
+Important to underline the function check_golden_token(token.dist, token.rot_y), which is used in find_silver_token() to avoid this situation: if a silver token is detected but there is also a golden token between the robot and the silver, it should ignore it.
+So check_golden_token(token.dist, token.rot_y) returns a boolean (True) if the measure of distance of the golden token is less than the silver one's. Another constraint for the comparison of the distances is that the allignment of both the tokens of different color must be equal (angle of golden one must be the same of the silver detected).
 
 The same happened to golden tokens, so that the robot can pinpoint exactly where they are. Thanks to some checks in the "main()" function, the robot is able to keep itself away from the walls and not collide with them.
 
@@ -187,6 +188,10 @@ def turn_decision():
 
 At this point, is simply necessary to select the exact velocity to turn 90° left or right based on the return of the function turn_decision().
 
+Flowchart
+--------------
+
+![alt text](https://github.com/samuelepedrazzi/Research-Track-1/blob/main/images/Assignment1_Diagram.png)
 
 Simulation video
 -----------------
