@@ -31,7 +31,7 @@ Installing
 The requirements for the assignment are: a Python 2.7 installation, the [pygame](http://pygame.org/) library, [PyPyBox2D](https://pypi.python.org/pypi/pypybox2d/2.1-r331), and [PyYAML](https://pypi.python.org/pypi/PyYAML/).
 
 By using `pip`, it should be installed the pygame dependence by the command: ```bash
-pip install hg+https://bitbucket.org/pygame/pygame``` Otherwise it can be used the operating system's package manager. `PyYAML` and `PyPyBox2D` can be clearly obtained by `pip install PyYAML` and `pip install PyPyBox2D` or it's just fine from `pip` or `easy_install`.
+$ pip install hg+https://bitbucket.org/pygame/pygame``` Otherwise it can be used the operating system's package manager. `PyYAML` and `PyPyBox2D` can be clearly obtained by `pip install PyYAML` and `pip install PyPyBox2D` or it's just fine from `pip` or `easy_install`.
 
 Once the dependencies are installed, simply run the `test.py` script to test out the simulator.
 
