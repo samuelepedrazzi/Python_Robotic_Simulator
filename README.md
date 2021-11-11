@@ -191,7 +191,11 @@ At this point, is simply necessary to select the exact velocity to turn 90° lef
 Flowchart
 --------------
 
-![alt text](https://github.com/samuelepedrazzi/Research-Track-1/blob/main/images/Assignment1_Diagram.png)
+<p align="center">
+    
+<img src="https://github.com/samuelepedrazzi/Research-Track-1/blob/main/images/Assignment1_Diagram.png" width="600" height="600">
+    
+</p>
 
 Simulation video
 -----------------
