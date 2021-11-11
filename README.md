@@ -128,7 +128,7 @@ Each `Marker` object has many attributes, such as:
 
 The most used ones for the assignment (in my case) are "marker_type" for the research of tokens and "dist" and "rot_y" to manage the correct movement of the robot and the avoidance of collisions.
 
-The two main problem to face up to are the collision avoidance from golden tokens, which represent the wall or the perimeter of the circuit, and the detection of silver tokens.
+-------------------------------the detection of silver tokens.
 To solve the first problem is used the "find_golden_token()" function which garantees a vision of 60° of the area in front of the robot, so that it can pinpoint exactly golden tokens. Thanks to some checks in the "main()" function, the robot is able to keep itself away from the walls and not collide with them.
 
 
@@ -136,4 +136,4 @@ To solve the first problem is used the "find_golden_token()" function which gara
 
 The aim of the robot, as already said, is to move around the circuit clockwise, grabbing silver tokens if there are some alog the path.
 In this paragraph let's analize only the part regard to the movement.
-Main problems to make the robot move safely are 
+The two main problems to make the robot move safely are to face up to the collision avoidance from golden tokens, which represent the wall or the perimeter of the circuit, 
