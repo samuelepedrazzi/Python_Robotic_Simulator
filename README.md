@@ -156,9 +156,9 @@ The same happened to golden tokens, so that the robot can pinpoint exactly where
 
 ### Movement around the arena ###
 
-The aim of the robot, as already said, is to move around the circuit clockwise, grabbing silver tokens if there are any along the path.
+The aim of the robot, as already said, is to move around the circuit counter-clockwise, grabbing silver tokens if there are any along the path.
 In this paragraph let's analize only the part regard to the movement.
-The two main problems to make the robot move safely are to face up to the collision avoidance from lateral golden tokens, which represent the wall or the perimeter of the circuit, and to make it turn properly in correspondence of a wall in front of it, specifically deciding where to go in order to continue the path in the same orientation (clockwise).
+The two main problems to make the robot move safely are to face up to the collision avoidance from lateral golden tokens, which represent the wall or the perimeter of the circuit, and to make it turn properly in correspondence of a wall in front of it, specifically deciding where to go in order to continue the path in the same orientation.
 
 When the robot is approaching to a wall but not clearly in front of it, so that golden tokens of the side can be considered lateral, in an angle up to 150° and -150°, the main() function manage to adjust the trajectory.
 
