@@ -77,7 +77,7 @@ To drop the token, call the `R.release` method.
 
 In order to use this capacity of the robot, an implemented function deals with the grabbing management: `grab_silver_token(dist, rot_y)`.
 
-Formerly it checks if the robot is at a distance where it can pick up the token (the thrashold is set to 0.4), then verifies if the method R.grab returns, so that it has grabbed the token and it manages to turn around and release the token, otherwise the robot approaches to it.
+Formerly it checks if the robot is at a distance where it can pick up the token (the threshold is set to 0.4), then verifies if the method R.grab returns, so that it has grabbed the token and it manages to turn around and release the token, otherwise the robot approaches to it.
 
 ```python
 if R.grab(): 
