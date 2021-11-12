@@ -213,7 +213,7 @@ I found a lot of interest in the designated project even though I have encounter
 * There are so many different ways to approach to the dedicate assignment and it is not easy to choose first which will be the most efficient.
 * The choice of velocity in respect of the motors is not taken for granted because the run of the code isn't deterministic so every time the robot can do little different changes of behaviour.
 
-General thoughts about the work done: the project helps a lot with the use of GitHub, which is essential for an engineer nowadays; Python is a language not so complicated, but I never been there for programming, so it was useful for me to try my hand at this new language, specially for the new "skill" of indentation code.
+General thoughts about the work done: the project helps a lot with the use of GitHub, which is essential for an engineer nowadays; Python is a language not so complicated, but I never been there for programming this type pf language, so it was useful for me to try my hand out, specially for the new "skill" of indentation code.
 
 ### Possible improvements ###
 
