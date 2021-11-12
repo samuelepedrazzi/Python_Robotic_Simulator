@@ -197,6 +197,10 @@ Flowchart
     
 </p>
 
+As can be seen in the figure the main() function starts an infinite loop through the "while 1" loop, then the function which detects golden tokens is called and returns a distance and an orientation. The control of these parameters of the detected golden token causes that the robot has or not has to avoide a lateral wall if there is one near to it.
+After that there's the check of a frontal wall which determine that the robot is arrived to a twist of the circuit, the if condition added to the turn_decision() function ensures that the robot will continue to the right way where there aren't golden tokens in the identified area.
+Now if there is a silver token detected it manages to reach it, grab it and release it behind, otherwise it goes on the path keeping driving straight. 
+
 Simulation video
 -----------------
 
