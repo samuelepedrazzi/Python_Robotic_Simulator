@@ -207,10 +207,16 @@ Simulation video
 I found a lot of interest in the designated project even though I have encountered some difficulties such as:
 
 * There are so many different ways to approach to the dedicate assignment and it is not easy to choose first which will be the most efficient.
-* The choice of velocity in respect of the motors is not taken for granted because the run of the code isn't deterministic so every time the robot can do something different.
+* The choice of velocity in respect of the motors is not taken for granted because the run of the code isn't deterministic so every time the robot can do little different changes of behaviour.
 
-
+General thoughts about the work done: the project helps a lot with the use of GitHub, which is essential for an engineer nowadays; Python is a language not so complicated, but I never been there for programming, so it was useful for me to try my hand at this new language, specially for the new "skill" of indentation code.
 
 ### Possible improvements ###
 
+Many improvements can be done to the code in order to manage the movement also in different arenas with other shapes and different perimeters.
 
+Maybe it might be useful to do a check of the silver tokens already grabbed, because of if the angle of the curves should be so tight (in proximity of an hairpin), if the token detected is just before the hairpin it could be detected and grabbed again. Hence an identification of the already grabbed tokens could be useful for this reason.
+
+Another improvement can be the management of the movement of turning, while the robot is avoiding a golden token, more swiftly and controlled.
+
+Possibly for a larger work and another kind of approach to the problem could be the a priori decision of which path to choose, scanning the arena before moving and localizing all golden tokens positions in order to not make the robot "bounce" from a wall to another if the movement wasn't so parallel to the walls and to speed up the robot's motion along the circuit.
